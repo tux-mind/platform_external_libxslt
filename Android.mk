@@ -52,3 +52,35 @@ LOCAL_C_INCLUDES += $(common_C_INCLUDES) external/libxml2/include external/icu4c
 LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
 LOCAL_MODULE:= libxslt
 include $(BUILD_HOST_STATIC_LIBRARY)
+
+common_SRC_FILES := \
+	libexslt/exslt.c				\
+	libexslt/common.c			\
+	libexslt/crypto.c			\
+	libexslt/math.c				\
+	libexslt/sets.c				\
+	libexslt/functions.c			\
+	libexslt/strings.c			\
+	libexslt/date.c				\
+	libexslt/saxon.c				\
+	libexslt/dynamic.c
+
+common_C_INCLUDES += \
+	$(LOCAL_PATH)/libexslt
+	
+LOCAL_STATIC_LIBRARIES := libxml2
+
+# For the device
+# =====================================================
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := $(common_SRC_FILES)
+LOCAL_C_INCLUDES += $(common_C_INCLUDES) external/libxml2/include external/icu4c/common
+LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
+LOCAL_CFLAGS += -fvisibility=hidden
+
+LOCAL_MODULE:= libexslt
+
+include $(BUILD_STATIC_LIBRARY)
+	
