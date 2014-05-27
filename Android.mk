@@ -36,8 +36,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(common_SRC_FILES)
 LOCAL_C_INCLUDES += $(common_C_INCLUDES) external/libxml2/include external/icu4c/common
 LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
-LOCAL_CFLAGS += -fvisibility=hidden
-
+LOCAL_STATIC_LIBRARIES := libxml2 icuuc icui18n
 LOCAL_MODULE:= libxslt
 
 include $(BUILD_STATIC_LIBRARY)
@@ -78,8 +77,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(common_SRC_FILES)
 LOCAL_C_INCLUDES += $(common_C_INCLUDES) external/libxml2/include external/icu4c/common
 LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
-LOCAL_CFLAGS += -fvisibility=hidden
-
+LOCAL_STATIC_LIBRARIES := libxslt libxml2 icuuc icui18n
 LOCAL_MODULE:= libexslt
 
 include $(BUILD_STATIC_LIBRARY)
